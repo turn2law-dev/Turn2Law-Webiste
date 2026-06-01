@@ -120,7 +120,7 @@ const sendNewRequestNotification = async (request: any) => {
                 <p><strong>Phone:</strong> ${request.user_phone || 'N/A'}</p>
                 <p><strong>Plan:</strong> ${request.plan || 'Basic'}</p>
             </div>
-            <p>Login to the <a href="https://turn2law.tech/admin/services" style="color: #DF9C49;">Admin Panel</a> to manage this request.</p>
+            <p>Login to the <a href="https://turn2law.com/admin/services" style="color: #DF9C49;">Admin Panel</a> to manage this request.</p>
         </div>
     `;
 

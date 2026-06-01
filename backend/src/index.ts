@@ -16,6 +16,8 @@ app.use(helmet());
 
 // CORS configuration - allow production domains
 const allowedOrigins = [
+  'https://turn2law.com',
+  'https://www.turn2law.com',
   'https://turn2law.tech',
   'https://www.turn2law.tech',
   'https://turn2law-frontend.vercel.app',

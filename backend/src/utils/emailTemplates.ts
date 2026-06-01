@@ -1,8 +1,8 @@
 
-const LOGO_URL = 'https://turn2law.tech/assets/logo.png'; // Make sure this exists or use text
-const DASHBOARD_URL = 'https://turn2law.tech/dashboard/client?tab=Track';
+const LOGO_URL = 'https://turn2law.com/assets/logo.png'; // Make sure this exists or use text
+const DASHBOARD_URL = 'https://turn2law.com/dashboard/client?tab=Track';
 const SUPPORT_PHONE = '+91 99061 02527';
-const SUPPORT_EMAIL = 'support@turn2law.tech';
+const SUPPORT_EMAIL = 'support@turn2law.com';
 
 // Brand Colors
 const BRAND_BLACK = '#1a1a1a';

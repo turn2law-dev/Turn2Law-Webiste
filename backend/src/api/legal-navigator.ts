@@ -22,7 +22,7 @@ async function callOpenRouterAI(systemPrompt: string, userPrompt: string, maxTok
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`,
-        'HTTP-Referer': 'https://turn2law.tech',
+        'HTTP-Referer': 'https://turn2law.com',
         'X-Title': 'Turn2Law Legal Navigator',
       },
       body: JSON.stringify({
