@@ -1,0 +1,58 @@
+{
+  "name": "turn2law-backend",
+  "version": "1.0.0",
+  "description": "Backend services for Turn2Law platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "postinstall": "npm run build",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:status": "supabase status"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.55.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^1.4.13",
+    "@types/node": "^22.10.7",
+    "@types/nodemailer": "^7.0.4",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^7.0.10",
+    "razorpay": "^2.9.6",
+    "resend": "^6.5.2",
+    "socket.io": "^4.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@typescript-eslint/eslint-plugin": "^8.18.2",
+    "@typescript-eslint/parser": "^8.18.2",
+    "eslint": "^9.18.0",
+    "jest": "^25.0.0",
+    "nodemon": "^3.1.9"
+  },
+  "keywords": [
+    "legal",
+    "lawyers",
+    "consultation",
+    "api",
+    "backend"
+  ],
+  "author": "Turn2Law Team",
+  "license": "MIT"
+}

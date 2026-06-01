@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode Colors - Professional & Clean */
+    --background: 0 0% 100%; /* #FFFFFF - Pure White Background */
+    --foreground: 0 0% 0%; /* #000000 - Black Text for Maximum Contrast */
+    --card: 0 0% 98%; /* #FAFAFA - Subtle Off-White for Cards */
+    --card-foreground: 0 0% 0%; /* #000000 - Black Text on Cards */
+    --popover: 0 0% 100%; /* #FFFFFF - White Popover */
+    --popover-foreground: 0 0% 0%; /* #000000 - Black Text in Popover */
+    --primary: 40 96% 53%; /* #DF9C49 - Primary Gold */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF - White text on Gold */
+    --secondary: 32 52% 59%; /* #AE7739 - Secondary Brown */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF - White text on Brown */
+    --tertiary: 178 100% 25%; /* #17726E - Tertiary Teal */
+    --tertiary-foreground: 0 0% 100%; /* #FFFFFF - White text on Teal */
+    --muted: 0 0% 96%; /* #F5F5F5 - Light Gray Background */
+    --muted-foreground: 0 0% 20%; /* #333333 - Dark Gray Text */
+    --accent: 40 96% 53%; /* #DF9C49 - Gold Accent */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF - White on Accent */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 76%; /* #C2C2C2 - Border Gray */
+    --input: 0 0% 96%; /* #F5F5F5 - Light Input Background */
+    --ring: 40 96% 53%; /* #DF9C49 - Gold Focus Ring */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark Mode Colors - ORIGINAL (NO CHANGES) */
+    --background: 240 5% 6%; /* #0E0E0E */
+    --foreground: 0 0% 98%;
+    --card: 240 5% 9%; /* #171717 */
+    --card-foreground: 0 0% 98%;
+    --popover: 240 5% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 45 100% 51%; /* #DBAD00 */
+    --primary-foreground: 240 5% 6%;
+    --secondary: 178 100% 30%; /* #009E98 */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 5% 15%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 178 100% 30%; /* #009E98 */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 15%;
+    --input: 240 5% 15%;
+    --ring: 45 100% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    transition:
+      background-color 0.3s ease-in-out,
+      border-color 0.3s ease-in-out,
+      color 0.3s ease-in-out;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .marquee {
+    animation: marquee 30s linear infinite;
+  }
+  .marquee:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-rtl {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee-rtl {
+    animation: marquee-rtl 40s linear infinite;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  /* Custom animations for hero section */
+  @keyframes scan-line {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-scan-line {
+    animation: scan-line 3s linear infinite;
+  }
+
+  @keyframes float-1 {
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateY(-8px) translateX(4px);
+      opacity: 1;
+    }
+  }
+
+  .animate-float-1 {
+    animation: float-1 4s ease-in-out infinite;
+  }
+
+  @keyframes float-2 {
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(-12px) translateX(-6px);
+      opacity: 0.9;
+    }
+  }
+
+  .animate-float-2 {
+    animation: float-2 5s ease-in-out infinite 1s;
+  }
+
+  @keyframes float-3 {
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-6px) translateX(8px);
+      opacity: 1;
+    }
+  }
+
+  .animate-float-3 {
+    animation: float-3 3.5s ease-in-out infinite 2s;
+  }
+
+  /* Banner scroll animation */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hide scrollbars while keeping scroll functionality */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
