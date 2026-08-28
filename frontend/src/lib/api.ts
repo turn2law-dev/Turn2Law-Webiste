@@ -1,9 +1,9 @@
 // Frontend API Service Layer
 // Place this in: frontend/src/lib/api.ts
 
-const API_BASE = process.env.NODE_ENV === 'production' 
-  ? 'https://your-backend-url.com/api' 
-  : 'http://localhost:3001/api';
+const API_BASE = `${process.env.NEXT_PUBLIC_API_URL || (process.env.NODE_ENV === 'production'
+  ? 'https://turn2law-backend-p3r6.onrender.com'
+  : 'http://localhost:3001')}/api`.replace(/([^:]\/)\/+/g, '$1');
 
 export interface User {
   id: string;

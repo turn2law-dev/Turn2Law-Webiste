@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { createClient } from '@supabase/supabase-js';
 import jwt from 'jsonwebtoken';
+import { randomBytes } from 'crypto';
 import { sendEmail } from '../utils/email';
 import { getServiceReceivedEmail, getStatusUpdateEmail, getDocumentReceivedEmail } from '../utils/emailTemplates';
 
@@ -16,7 +17,10 @@ const supabaseAdmin = createClient(
 const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim().toLowerCase());
 
 // JWT Secret
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET ||
+    (process.env.NODE_ENV === 'production'
+        ? (() => { throw new Error('JWT_SECRET must be configured in production'); })()
+        : randomBytes(32).toString('hex'));
 
 // Service code mapping
 const SERVICE_CODES: Record<string, string> = {
@@ -468,7 +472,8 @@ router.post('/:id/documents', async (req: Request, res: Response) => {
 // GET /api/service-requests/check-admin - Check if user is admin
 // GET /api/service-requests/check-admin - Check if user is admin
 router.get('/check-admin/:email', async (req: Request, res: Response) => {
-    const { email } = req.params;
+    const emailParam = req.params.email;
+    const email = Array.isArray(emailParam) ? emailParam[0] : emailParam;
     const isAdmin = await isWhitelistedAdmin(email);
     return res.json({ isAdmin });
 });

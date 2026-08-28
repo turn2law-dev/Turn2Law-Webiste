@@ -300,7 +300,7 @@ Ensure these are in `/backend/.env`:
 SUPABASE_URL=https://vjfpqtyinumanvpgqlbj.supabase.co
 SUPABASE_ANON_KEY=eyJ...
 SUPABASE_SERVICE_ROLE_KEY=eyJ...  # ⚠️ IMPORTANT - Must have this!
-JWT_SECRET=your-secret-key
+JWT_SECRET=replace_with_a_long_random_secret
 JWT_EXPIRE_IN=7d
 ```
 
