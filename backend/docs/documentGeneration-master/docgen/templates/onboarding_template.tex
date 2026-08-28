@@ -1,0 +1,75 @@
+\documentclass[9.5pt]{article}
+\input{LAYOUTS_DIR_PLACEHOLDERbrand_preamble}
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\parskip}{3pt}
+\begin{document}
+
+% Space to clear logo (logo bottom ~85.6pt, top margin 74pt)
+\vspace*{18pt}
+
+{\fontsize{14pt}{17pt}\selectfont\bfseries\color{t2ldark}%
+  ONBOARDING LETTER{{CP_Title_Suffix}}%
+}\par\vspace{2pt}
+{\color{refgold}\rule{\linewidth}{1pt}}\par\vspace{7pt}
+
+{\fontsize{9.5pt}{13pt}\selectfont\color{refcharcoal}%
+  \textbf{Date:} {{Document_Date}}\par\vspace{4pt}%
+  \textbf{To,}\\[1pt]\textbf{{{Employee_Name}}}\\Employee ID: {{Emp_ID}}%
+}\par\vspace{6pt}
+
+{\fontsize{9.5pt}{12.5pt}\selectfont\bfseries\color{t2ldark}%
+  Subject: Offer of Employment --- {{Role}}%
+}\par
+{\color{refgold}\rule{0.36\linewidth}{0.6pt}}\par\vspace{7pt}
+
+{\fontsize{9.5pt}{13.5pt}\selectfont\color{refcharcoal}
+
+Dear {{Employee_Name}},
+
+We are pleased to welcome you to \textbf{{{CP_Company_Name}}}. We are delighted
+to extend this offer and look forward to your contributions.
+
+We are pleased to offer you the position of \textbf{{{Role}}} with effect from
+\textbf{{{Joining_Date}}}.
+
+\vspace{4pt}
+\textbf{Key Terms of Employment:}
+\begin{itemize}[leftmargin=14pt, itemsep=0pt, topsep=1pt, parsep=0pt]
+  \item \textbf{Employee Name:} {{Employee_Name}}
+  \item \textbf{Employee ID:} {{Emp_ID}}
+  \item \textbf{Designation:} {{Role}}
+  \item \textbf{Date of Joining:} {{Joining_Date}}
+  \item \textbf{Place of Posting:} {{CP_Company_Address}}
+\end{itemize}
+
+\vspace{4pt}
+This offer is subject to satisfactory completion of pre-employment documentation
+and background verification, and your compliance with the policies of
+\textbf{{{CP_Company_Name}}}.
+
+\vspace{4pt}
+Your employment is governed by Indian law and the terms in the formal Employment
+Agreement, provided on your first day.
+
+\vspace{4pt}
+We look forward to a long and mutually beneficial relationship.
+
+\vspace{7pt}
+Yours sincerely,
+
+}\par\vspace{8pt}
+
+% ── Signature ──────────────────────────────────────────────────────────────
+\ifthenelse{\equal{{{CP_Signature_Image}}}{}}{%
+  \vspace{18pt}%
+}{%
+  \includegraphics[height=34pt,keepaspectratio=true]{{{CP_Signature_Image}}}\par\vspace{2pt}%
+}
+{\fontsize{10pt}{13pt}\selectfont\bfseries\color{t2ldark}{{CP_Signatory_Name}}}\par
+{\fontsize{8.5pt}{12pt}\selectfont\color{refcharcoal}%
+  {{CP_Designation}}\\{{CP_Company_Name}}\\{{CP_Company_Email}}%
+  \ifthenelse{\equal{{{CP_Company_Website}}}{}}{}{\\{{CP_Company_Website}}}%
+}\par
+
+\end{document}
+

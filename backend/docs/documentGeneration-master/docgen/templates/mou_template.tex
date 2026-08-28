@@ -1,0 +1,84 @@
+\documentclass[9.5pt]{article}
+\input{LAYOUTS_DIR_PLACEHOLDERbrand_preamble}
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\parskip}{3pt}
+\begin{document}
+
+\vspace*{18pt}
+
+{\fontsize{14pt}{17pt}\selectfont\bfseries\color{t2ldark}MEMORANDUM OF UNDERSTANDING}\par\vspace{2pt}
+{\color{refgold}\rule{\linewidth}{1pt}}\par\vspace{8pt}
+
+{\fontsize{9.5pt}{13.5pt}\selectfont\color{refcharcoal}
+
+This Memorandum of Understanding (\textbf{``MOU''}) is entered into as of
+\textbf{{{Date}}} by and between \textbf{{{PartyA_Name}}} (\textbf{``Party~A''})
+and \textbf{{{PartyB_Name}}} (\textbf{``Party~B''}), collectively the
+\textbf{``Parties''}.
+
+\vspace{5pt}
+\textbf{\color{t2ldark}1.\enspace PURPOSE AND SCOPE}
+
+{{Purpose}}
+
+\vspace{5pt}
+\textbf{\color{t2ldark}2.\enspace TERM}
+
+This MOU shall remain in effect for \textbf{{{Term}}} from the date of
+execution, unless terminated earlier by mutual written agreement.
+
+\vspace{5pt}
+\textbf{\color{t2ldark}3.\enspace ROLES AND RESPONSIBILITIES}
+
+\textbf{Party~A ({{PartyA_Name}})} shall facilitate its obligations as mutually
+agreed and provide timely communication and documentation as required.
+
+\textbf{Party~B ({{PartyB_Name}})} shall fulfil its obligations as mutually
+agreed and cooperate fully to achieve the objectives of this MOU.
+
+\ifthenelse{\equal{{{Confidentiality}}}{}}{}{%
+  \vspace{5pt}
+  \textbf{\color{t2ldark}4.\enspace CONFIDENTIALITY}
+
+  {{Confidentiality}}}
+
+\vspace{5pt}
+\textbf{\color{t2ldark}5.\enspace NON-BINDING NATURE}
+
+Unless otherwise stated, this MOU is an expression of intent only and creates
+no legally binding obligations except as explicitly stated herein.
+
+\vspace{5pt}
+\textbf{\color{t2ldark}6.\enspace GOVERNING LAW}
+
+This MOU is governed by the laws of India. Disputes shall be resolved amicably,
+failing which through arbitration at \textbf{{{Jurisdiction}}} per the
+Arbitration and Conciliation Act, 1996.
+\ifthenelse{\equal{{{Governing_Law}}}{}}{}{\ {{Governing_Law}}}
+
+\ifthenelse{\equal{{{Termination_Clause}}}{}}{}{%
+  \vspace{5pt}
+  \textbf{\color{t2ldark}7.\enspace TERMINATION}
+
+  {{Termination_Clause}}}
+
+\vspace{8pt}
+\textbf{\color{t2ldark}IN WITNESS WHEREOF}, the Parties have executed this MOU
+as of the date first written above.
+
+}\par\vspace{8pt}
+
+% ── Signature table ─────────────────────────────────────────────────────────
+\begin{tabularx}{\linewidth}{@{}X@{\hspace{28pt}}X@{}}
+  \textbf{\fontsize{9pt}{11pt}\selectfont PARTY A} &
+  \textbf{\fontsize{9pt}{11pt}\selectfont PARTY B} \\[16pt]
+  \rule{0.40\linewidth}{0.4pt} & \rule{0.40\linewidth}{0.4pt} \\[3pt]
+  {\fontsize{9.5pt}{12pt}\selectfont\bfseries\color{t2ldark}{{PartyA_Name}}} &
+  {\fontsize{9.5pt}{12pt}\selectfont\bfseries\color{t2ldark}{{PartyB_Name}}} \\[1pt]
+  {\fontsize{8pt}{11pt}\selectfont\color{refcharcoal}Date:\enspace\underline{\hspace{50pt}}} &
+  {\fontsize{8pt}{11pt}\selectfont\color{refcharcoal}Date:\enspace\underline{\hspace{50pt}}} \\
+\end{tabularx}
+
+\end{document}
+
+
