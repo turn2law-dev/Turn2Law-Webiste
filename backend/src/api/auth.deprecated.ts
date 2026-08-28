@@ -23,6 +23,7 @@ import { supabase, supabaseAdmin } from '../config/supabase';
 import jwt, { SignOptions } from 'jsonwebtoken';
 import { z } from 'zod';
 import { upload, handleMulterError, getFileUrl } from '../utils/fileUpload';
+import { randomBytes } from 'crypto';
 
 const router = Router();
 
@@ -61,7 +62,7 @@ const loginSchema = z.object({
 
 // Helper function to generate JWT token
 const generateToken = (userId: string, userType: string): string => {
-  const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+  const JWT_SECRET = process.env.JWT_SECRET || randomBytes(32).toString('hex');
   const JWT_EXPIRE_IN = process.env.JWT_EXPIRE_IN || '7d';
   
   return jwt.sign(

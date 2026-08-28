@@ -9,7 +9,6 @@ node_modules/
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-package-lock.json
 
 # testing
 /coverage
@@ -38,10 +37,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
 .genkit/*
 .env*
+!.env.example
 
 # firebase
 firebase-debug.log
@@ -54,3 +53,10 @@ firestore-debug.log
 # Git internal files
 .git-rewrite/backend/ml-service/venv/
 *.log
+
+# Local agent/editor state
+.claude/
+
+# Python caches and bytecode
+__pycache__/
+*.py[cod]

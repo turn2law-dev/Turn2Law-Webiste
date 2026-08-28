@@ -6,8 +6,7 @@ const OPENROUTER_BASE_URL = 'https://openrouter.ai/api/v1/';
 // Initialize OpenRouter client using the OpenAI SDK (fully compatible)
 export const openRouterClient = new OpenAI({
   baseURL: OPENROUTER_BASE_URL,
-  apiKey: process.env.NEXT_PUBLIC_OPENROUTER_API_KEY,
-  dangerouslyAllowBrowser: true,
+  apiKey: process.env.OPENROUTER_API_KEY,
   defaultHeaders: {
     'HTTP-Referer': 'https://turn2law.tech',
     'X-Title': 'Turn2Law LawGPT',
@@ -106,6 +105,6 @@ Keep it concise and actionable.`;
 }
 
 // Warn if key is missing
-if (!process.env.NEXT_PUBLIC_OPENROUTER_API_KEY) {
-  console.warn('WARNING: NEXT_PUBLIC_OPENROUTER_API_KEY is not configured. AI features will not work.');
+if (!process.env.OPENROUTER_API_KEY) {
+  console.warn('WARNING: OPENROUTER_API_KEY is not configured. AI features will not work.');
 }

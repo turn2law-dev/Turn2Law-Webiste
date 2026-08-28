@@ -3,7 +3,10 @@
  * Frontend service for communicating with the ML-powered lawyer matching backend
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === 'production'
+    ? 'https://turn2law-backend-p3r6.onrender.com'
+    : 'http://localhost:3001');
 
 export interface ClientMatchRequest {
   case_type: string;

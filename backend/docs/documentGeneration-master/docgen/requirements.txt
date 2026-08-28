@@ -1,0 +1,28 @@
+# ── Existing dependencies ──────────────────────────────────────────────────
+google-genai
+PyMuPDF
+python-docx
+pytesseract
+Pillow
+python-dotenv
+reportlab
+fastapi
+uvicorn[standard]
+python-multipart
+
+# ── Digital Signature Engine ───────────────────────────────────────────────
+# PAdES / CMS PDF signing
+pyhanko==0.25.1
+
+# Certificate handling (PKCS#12, X.509, hashing, algorithms)
+cryptography==43.0.3
+
+# Certificate validation chain (required by pyHanko's validation layer)
+pyhanko-certvalidator==0.26.4
+
+# ── System packages (not pip-installable) ─────────────────────────────────
+# These must be installed with apt / installer, not pip:
+#
+# Windows: MiKTeX (includes xelatex)   https://miktex.org/download
+# Linux:   sudo apt-get install -y texlive-xetex texlive-latex-recommended \
+#                texlive-latex-extra texlive-fonts-recommended

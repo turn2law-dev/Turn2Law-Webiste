@@ -233,7 +233,7 @@ const SignupPage = () => {
       });
       
       if (!validation.isValid) {
-        showNotification(validation.error, 'error');
+        showNotification(validation.error ?? 'Invalid profile image', 'error');
         return;
       }
       
