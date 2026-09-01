@@ -1,0 +1,71 @@
+\documentclass[9.5pt]{article}
+\input{LAYOUTS_DIR_PLACEHOLDERbrand_preamble}
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\parskip}{3pt}
+\begin{document}
+
+\vspace*{18pt}
+
+{\fontsize{14pt}{17pt}\selectfont\bfseries\color{t2ldark}EMPLOYMENT OFFER LETTER}\par\vspace{2pt}
+{\color{refgold}\rule{\linewidth}{1pt}}\par\vspace{7pt}
+
+{\fontsize{9.5pt}{13pt}\selectfont\color{refcharcoal}%
+  \textbf{Date:} {{Start_Date}}\par\vspace{4pt}%
+  \textbf{To,}\\[1pt]\textbf{{{Name}}}\\{{Company}}%
+}\par\vspace{7pt}
+
+{\fontsize{9.5pt}{12.5pt}\selectfont\bfseries\color{t2ldark}%
+  Subject: Offer of Employment --- {{Position}}%
+}\par
+{\color{refgold}\rule{0.40\linewidth}{0.6pt}}\par\vspace{7pt}
+
+{\fontsize{9.5pt}{13.5pt}\selectfont\color{refcharcoal}
+
+Dear \textbf{{{Name}}},
+
+We are pleased to offer you the position of \textbf{{{Position}}} at
+\textbf{{{CP_Company_Name}}}. We are confident that your skills will be a
+valuable addition to our team.
+
+\vspace{4pt}
+\textbf{Key Terms of the Offer:}
+\begin{itemize}[leftmargin=14pt, itemsep=0pt, topsep=1pt, parsep=0pt]
+  \item \textbf{Position:} {{Position}}
+  \item \textbf{Date of Joining:} {{Start_Date}}
+  \item \textbf{Annual CTC:} {{Salary}}
+  \ifthenelse{\equal{{{Manager_Name}}}{}}{}{%
+    \item \textbf{Reporting Manager:} {{Manager_Name}}}
+  \item \textbf{Place of Work:} {{CP_Company_Address}}
+\end{itemize}
+
+\ifthenelse{\equal{{{Benefits_Description}}}{}}{}{%
+  \vspace{4pt}\textbf{Additional Benefits:}\\{{Benefits_Description}}%
+}
+
+\vspace{4pt}
+This offer is contingent upon satisfactory completion of all pre-employment
+checks. Please confirm acceptance by
+\ifthenelse{\equal{{{Response_Date}}}{}}{\textbf{7 days from the date of this letter}}{\textbf{{{Response_Date}}}}.
+
+\vspace{4pt}
+We look forward to welcoming you to the \textbf{{{CP_Company_Name}}} family.
+
+\vspace{7pt}
+Yours sincerely,
+
+}\par\vspace{8pt}
+
+% ── Signature ──────────────────────────────────────────────────────────────
+\ifthenelse{\equal{{{CP_Signature_Image}}}{}}{%
+  \vspace{18pt}%
+}{%
+  \includegraphics[height=34pt,keepaspectratio=true]{{{CP_Signature_Image}}}\par\vspace{2pt}%
+}
+{\fontsize{10pt}{13pt}\selectfont\bfseries\color{t2ldark}{{CP_Signatory_Name}}}\par
+{\fontsize{8.5pt}{12pt}\selectfont\color{refcharcoal}%
+  {{CP_Designation}}\\{{CP_Company_Name}}\\{{CP_Company_Email}}%
+}\par
+
+\end{document}
+
+

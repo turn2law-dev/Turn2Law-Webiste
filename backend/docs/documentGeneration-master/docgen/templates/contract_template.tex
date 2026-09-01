@@ -1,0 +1,104 @@
+\documentclass[9.5pt]{article}
+\input{LAYOUTS_DIR_PLACEHOLDERbrand_preamble}
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\parskip}{3pt}
+\begin{document}
+
+\vspace*{18pt}
+
+{\fontsize{14pt}{17pt}\selectfont\bfseries\color{t2ldark}SERVICE CONTRACT}\par\vspace{2pt}
+{\color{refgold}\rule{\linewidth}{1pt}}\par\vspace{8pt}
+
+{\fontsize{9.5pt}{13.5pt}\selectfont\color{refcharcoal}
+
+This Service Contract (\textbf{``Contract''}) is entered into as of
+\textbf{{{Contract_Creation_Date}}} by and between:
+
+\vspace{5pt}
+\textbf{{{CP_Company_Name}}} (the \textbf{``Service Provider''}), having its
+registered office at {{CP_Company_Address}};
+
+\vspace{3pt}\textbf{AND}\vspace{3pt}
+
+\textbf{{{Client_Name}}}, {{Company}} (the \textbf{``Client''}).
+
+\vspace{5pt}
+\textbf{\color{t2ldark}1.\enspace SERVICES}
+
+The Service Provider agrees to render the following services to the Client
+(\textbf{``Services''}):
+
+\vspace{3pt}\textit{{{Service_Description}}}
+
+\vspace{5pt}
+\textbf{\color{t2ldark}2.\enspace TERM}
+
+This Contract shall commence on \textbf{{{Start_Date}}} and continue until
+\textbf{{{End_Date}}}, unless terminated earlier in accordance with the terms
+herein.
+
+\vspace{5pt}
+\textbf{\color{t2ldark}3.\enspace PAYMENT}
+
+In consideration for the Services, the Client agrees to pay a total fee of
+\textbf{{{Payment_Amount}}}.
+\ifthenelse{\equal{{{Payment_Schedule}}}{}}{%
+  \ Payment shall be made as mutually agreed between the Parties.%
+}{%
+  \ \textbf{Schedule:} {{Payment_Schedule}}}
+
+\vspace{5pt}
+\textbf{\color{t2ldark}4.\enspace CONFIDENTIALITY}
+
+Each party agrees to keep confidential all non-public information received and
+not to disclose it without prior written consent.
+
+\vspace{5pt}
+\textbf{\color{t2ldark}5.\enspace INTELLECTUAL PROPERTY}
+
+All deliverables remain the property of the Service Provider until full payment
+is received, upon which ownership transfers to the Client.
+
+\vspace{5pt}
+\ifthenelse{\equal{{{Termination_Clause}}}{}}{%
+  \textbf{\color{t2ldark}6.\enspace TERMINATION}
+
+  Either party may terminate with 30~days written notice. In the event of
+  material breach, termination may be with immediate effect.%
+}{%
+  \textbf{\color{t2ldark}6.\enspace TERMINATION}
+
+  {{Termination_Clause}}}
+
+\vspace{5pt}
+\textbf{\color{t2ldark}7.\enspace GOVERNING LAW}
+
+This Contract is governed by the laws of India. Disputes shall be resolved
+through arbitration per the Arbitration and Conciliation Act, 1996.
+
+\vspace{8pt}
+\textbf{\color{t2ldark}IN WITNESS WHEREOF}, the parties have executed this
+Contract as of the date first written above.
+
+}\par\vspace{8pt}
+
+% ── Signature table ─────────────────────────────────────────────────────────
+\begin{tabularx}{\linewidth}{@{}X@{\hspace{28pt}}X@{}}
+  \textbf{\fontsize{9pt}{11pt}\selectfont SERVICE PROVIDER} &
+  \textbf{\fontsize{9pt}{11pt}\selectfont CLIENT} \\[14pt]
+  \ifthenelse{\equal{{{CP_Signature_Image}}}{}}{%
+    \rule{0.40\linewidth}{0.4pt} & \rule{0.40\linewidth}{0.4pt} \\[3pt]%
+  }{%
+    \includegraphics[height=32pt,keepaspectratio=true]{{{CP_Signature_Image}}} &
+    \rule{0.40\linewidth}{0.4pt} \\[3pt]%
+  }
+  {\fontsize{9.5pt}{12pt}\selectfont\bfseries\color{t2ldark}{{CP_Signatory_Name}}} &
+  {\fontsize{9.5pt}{12pt}\selectfont\bfseries\color{t2ldark}{{Client_Name}}} \\[1pt]
+  {\fontsize{8pt}{11pt}\selectfont\color{refcharcoal}{{CP_Designation}}} &
+  {\fontsize{8pt}{11pt}\selectfont\color{refcharcoal}{{Company}}} \\[1pt]
+  {\fontsize{8pt}{11pt}\selectfont\color{refcharcoal}{{CP_Company_Name}}} & \\
+\end{tabularx}
+
+\end{document}
+
+

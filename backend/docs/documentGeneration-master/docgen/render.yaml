@@ -1,0 +1,34 @@
+# render.yaml — Deploy on Render.com
+# 1. Push this repo to GitHub
+# 2. Go to https://render.com/deploy and import the repo
+# 3. Render auto-detects this file and creates the service
+services:
+  - type: web
+    name: turn2law-docengine
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: CORS_ORIGINS
+        sync: false
+      - key: T2L_COMPANY_NAME
+        value: EFFIVIA TURN2LAW LEGAL PRIVATE LIMITED
+      - key: T2L_SIGNATORY_NAME
+        sync: false
+      - key: T2L_DESIGNATION
+        value: Founder & CEO
+      - key: T2L_COMPANY_ADDRESS
+        sync: false
+      - key: T2L_COMPANY_EMAIL
+        sync: false
+      - key: T2L_COMPANY_WEBSITE
+        value: www.turn2law.in
+      - key: MAX_UPLOAD_BYTES
+        value: "20971520"
+      - key: MAX_CERT_BYTES
+        value: "5242880"

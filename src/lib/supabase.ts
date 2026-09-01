@@ -1,10 +1,9 @@
 // @ts-ignore - Supabase client types
 import { createClient } from '@supabase/supabase-js';
 
-// Supabase configuration - fallback to hardcoded values if env vars not available
-// In browser context, these will be replaced by Next.js at build time
-const supabaseUrl = 'https://vjfpqtyinumanvpgqlbj.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqZnBxdHlpbnVtYW52cGdxbGJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU0OTEyOTIsImV4cCI6MjA3MTA2NzI5Mn0.IL4G5wXabjKdpUZGBAdAq5bvm1W6Xvb-zg9ux9uq5LY';
+// Supabase configuration — must be set via environment variables
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
 // Create Supabase client for browser
 // @ts-ignore - Supabase client initialization
