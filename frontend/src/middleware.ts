@@ -39,9 +39,19 @@ export function middleware(request: NextRequest) {
   
   // Only set CSP in production to avoid dev issues
   if (process.env.NODE_ENV === 'production') {
-    const backendApiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://turn2law-backend-p3r6.onrender.com';
-    const lawgptApiUrl = process.env.NEXT_PUBLIC_LAWGPT_API_URL || 'https://turn2law-lawgpt-zzj3.onrender.com';
+    const backendApiUrl = process.env.NEXT_PUBLIC_API_URL || '';
+    const lawgptApiUrl = process.env.NEXT_PUBLIC_LAWGPT_API_URL || '';
+    const docEngineUrl = process.env.DOCUMENT_GENERATION_API_URL || '';
     
+    const connectSrcParts = [
+      "'self'",
+      'https://*.supabase.co',
+      'https://generativelanguage.googleapis.com',
+      backendApiUrl,
+      lawgptApiUrl,
+      docEngineUrl,
+    ].filter(Boolean).join(' ');
+
     response.headers.set(
       'Content-Security-Policy',
       [
@@ -50,7 +60,7 @@ export function middleware(request: NextRequest) {
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
         "font-src 'self' data: https://fonts.gstatic.com",
         "img-src 'self' data: https: blob:",
-        `connect-src 'self' https://*.supabase.co ${backendApiUrl} ${lawgptApiUrl}`,
+        `connect-src ${connectSrcParts}`,
         "frame-ancestors 'none'",
       ].join('; ')
     );
