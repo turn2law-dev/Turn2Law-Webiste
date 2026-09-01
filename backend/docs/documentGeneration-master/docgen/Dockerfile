@@ -38,6 +38,10 @@ COPY . .
 # Output directory for generated PDFs
 RUN mkdir -p generated_docs
 
-EXPOSE 8000
+# PORT is injected by Render at runtime — default 8000 for local dev
+ENV PORT=8000
 
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+EXPOSE $PORT
+
+# Use shell form so $PORT is expanded at runtime
+CMD uvicorn api:app --host 0.0.0.0 --port $PORT

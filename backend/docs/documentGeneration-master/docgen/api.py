@@ -1,4 +1,4 @@
-﻿# coding: utf-8
+# coding: utf-8
 """
 api.py — Turn2Law Document Generation Engine — FastAPI web server.
 
@@ -56,15 +56,16 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# CORS: list only the specific origins that need access.
-# Do not mix "*" with explicit origins — the wildcard is redundant and can
-# cause browser rejections with certain CORS pre-flight requests.
-_CORS_ORIGINS = os.environ.get(
+# CORS — set CORS_ORIGINS or FRONTEND_URL env var in production.
+# Example: CORS_ORIGINS=https://your-app.vercel.app
+_raw_cors = os.environ.get(
     "CORS_ORIGINS",
-    # Set CORS_ORIGINS env var in production to your Vercel URL(s) e.g.:
-    # https://your-app.vercel.app,https://your-preview.vercel.app
-    "http://localhost:9002,http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001",
-).split(",")
+    os.environ.get(
+        "FRONTEND_URL",
+        "http://localhost:9002,http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001",
+    ),
+)
+_CORS_ORIGINS = [o.strip() for o in _raw_cors.split(",") if o.strip()]
 
 app.add_middleware(
     CORSMiddleware,
