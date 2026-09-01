@@ -1,14 +1,13 @@
 import type {NextConfig} from 'next';
 import path from 'path';
 
-const ENGINE_URL = (
-  process.env.DOCUMENT_GENERATION_API_URL || 'http://127.0.0.1:8000'
-).replace(/\/$/, '');
+const ENGINE_URL = (process.env.DOCUMENT_GENERATION_API_URL || '').replace(/\/$/, '');
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
 
   async rewrites() {
+    if (!ENGINE_URL) return [];
     return [
       {
         source: '/files/:path*',
