@@ -1,4 +1,4 @@
-# coding: utf-8
+﻿# coding: utf-8
 """
 api.py — Turn2Law Document Generation Engine — FastAPI web server.
 
@@ -61,7 +61,9 @@ app = FastAPI(
 # cause browser rejections with certain CORS pre-flight requests.
 _CORS_ORIGINS = os.environ.get(
     "CORS_ORIGINS",
-    "http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001",
+    # Set CORS_ORIGINS env var in production to your Vercel URL(s) e.g.:
+    # https://your-app.vercel.app,https://your-preview.vercel.app
+    "http://localhost:9002,http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001",
 ).split(",")
 
 app.add_middleware(
@@ -170,6 +172,18 @@ class GenerateRequest(BaseModel):
 # ---------------------------------------------------------------------------
 # Endpoints
 # ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# Health check — used by Render / Railway / load-balancers
+# ---------------------------------------------------------------------------
+
+@app.get("/health", summary="Health check", tags=["meta"])
+def health_check():
+    """Returns 200 OK when the service is running."""
+    return {"status": "ok", "service": "turn2law-docengine"}
+
+
 
 @app.get("/api/templates", summary="List all available document templates")
 def list_templates() -> List[Dict[str, Any]]:
