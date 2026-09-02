@@ -15,7 +15,7 @@ services:
       - key: GEMINI_MODEL
         value: gemini-2.5-flash
       - key: CORS_ORIGINS
-        sync: false
+        value: "https://turn2law-tan.vercel.app"
       - key: T2L_COMPANY_NAME
         value: EFFIVIA TURN2LAW LEGAL PRIVATE LIMITED
       - key: T2L_SIGNATORY_NAME
