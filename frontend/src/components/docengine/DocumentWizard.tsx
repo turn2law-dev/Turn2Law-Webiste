@@ -224,7 +224,7 @@ export default function DocumentWizard() {
 
   // ── fetch templates ──────────────────────────────────────────────────────
   useEffect(() => {
-    fetch("/api/docengine/api/templates")
+    fetch("/api/docengine/templates")
       .then((r) => r.json())
       .then((data: unknown) => {
         setTemplates(Array.isArray(data) ? (data as TemplateInfo[]) : STATIC_TEMPLATES);
@@ -238,7 +238,7 @@ export default function DocumentWizard() {
   async function loadSchema(docType: DocTypeId) {
     const tpl = templates.find((t) => t.id === docType);
     try {
-      const res  = await fetch(`/api/docengine/api/schema/${docType}`);
+      const res  = await fetch(`/api/docengine/schema/${docType}`);
       const data = await res.json() as { required?: FieldSchema[]; optional?: FieldSchema[] };
       if (Array.isArray(data.required) && Array.isArray(data.optional)) {
         setRequiredFields(data.required);
@@ -270,7 +270,7 @@ export default function DocumentWizard() {
     const fd = new FormData();
     fd.append("file", file);
     try {
-      const res  = await fetch("/api/docengine/api/classify", { method: "POST", body: fd });
+      const res  = await fetch("/api/docengine/classify", { method: "POST", body: fd });
       const data = await res.json() as { doc_type?: string; error?: string };
       if (data.doc_type) {
         const matched = templates.find((t) => t.id === data.doc_type);
@@ -317,7 +317,7 @@ export default function DocumentWizard() {
         fd.append("profile_name",     profileName || "Custom Letterhead");
         fd.append("letterhead_image", letterheadFile);
         if (brandAssets.signature) fd.append("signature_image", brandAssets.signature);
-        result = await fetch("/api/docengine/api/generate-with-letterhead", { method: "POST", body: fd }).then((r) => r.json());
+        result = await fetch("/api/docengine/generate-with-letterhead", { method: "POST", body: fd }).then((r) => r.json());
       } else if (brandingMode === "custom" && brandAssets.header) {
         const fd = new FormData();
         fd.append("doc_type",      selectedType);
@@ -329,9 +329,9 @@ export default function DocumentWizard() {
         if (brandAssets.watermark) fd.append("watermark_image", brandAssets.watermark);
         if (brandAssets.logo)      fd.append("logo_image",      brandAssets.logo);
         if (brandAssets.signature) fd.append("signature_image", brandAssets.signature);
-        result = await fetch("/api/docengine/api/generate-with-branding", { method: "POST", body: fd }).then((r) => r.json());
+        result = await fetch("/api/docengine/generate-with-branding", { method: "POST", body: fd }).then((r) => r.json());
       } else {
-        result = await fetch("/api/docengine/api/generate", {
+        result = await fetch("/api/docengine/generate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ doc_type: selectedType, fields: fieldValues }),
@@ -387,7 +387,7 @@ export default function DocumentWizard() {
     fd.append("visible", "true");
     fd.append("cert_file", certFile);
     try {
-      const data = await fetch("/api/docengine/api/sign", { method: "POST", body: fd }).then((r) => r.json()) as
+      const data = await fetch("/api/docengine/sign", { method: "POST", body: fd }).then((r) => r.json()) as
         { success: boolean; signed_pdf_url?: string; error?: string };
       if (data.success && data.signed_pdf_url) {
         const sp = `/api/docengine${data.signed_pdf_url.startsWith("/") ? "" : "/"}${data.signed_pdf_url}`;

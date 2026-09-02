@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const ENGINE_URL = (
+// Strip any trailing slash or /api suffix so we can always prepend /api/ cleanly.
+const ENGINE_BASE = (
   process.env.DOCUMENT_GENERATION_API_URL || "http://127.0.0.1:8000"
 ).replace(/\/+$/, "").replace(/\/api$/, "");
 
@@ -8,7 +9,8 @@ type RouteContext = { params: Promise<{ path: string[] }> };
 
 async function proxy(request: NextRequest, context: RouteContext) {
   const { path } = await context.params;
-  const upstreamUrl = `${ENGINE_URL}/${path.join("/")}${request.nextUrl.search}`;
+  // Always route through /api/ on the backend regardless of how the env var is set.
+  const upstreamUrl = `${ENGINE_BASE}/api/${path.join("/")}${request.nextUrl.search}`;
   const headers = new Headers(request.headers);
   headers.delete("host");
   headers.delete("origin");
