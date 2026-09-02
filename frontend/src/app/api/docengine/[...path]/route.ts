@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const ENGINE_URL = (
   process.env.DOCUMENT_GENERATION_API_URL || "http://127.0.0.1:8000"
-).replace(/\/$/, "");
+).replace(/\/+$/, "").replace(/\/api$/, "");
 
 type RouteContext = { params: Promise<{ path: string[] }> };
 
