@@ -12,7 +12,7 @@ services:
       - key: GEMINI_API_KEY
         sync: false
       - key: GEMINI_MODEL
-        value: gemini-2.5-flash
+        value: gemini-3.6-flash
       - key: CORS_ORIGINS
         value: "https://turn2law-tan.vercel.app"
       - key: T2L_COMPANY_NAME

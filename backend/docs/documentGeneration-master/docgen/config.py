@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 # Gemini
 # ---------------------------------------------------------------------------
 GEMINI_API_KEY: str | None = os.getenv("GEMINI_API_KEY")
-MODEL_NAME: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+MODEL_NAME: str = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
 
 if not GEMINI_API_KEY:
     logger.warning(

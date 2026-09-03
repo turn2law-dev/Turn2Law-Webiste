@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 // Strip any trailing slash or /api suffix so we can always prepend /api/ cleanly.
 const ENGINE_BASE = (
-  process.env.DOCUMENT_GENERATION_API_URL || "http://127.0.0.1:8000"
+  process.env.DOCUMENT_GENERATION_API_URL ||
+  (process.env.NODE_ENV === "production"
+    ? "https://turn2law-webiste-1.onrender.com"
+    : "http://127.0.0.1:8000")
 ).replace(/\/+$/, "").replace(/\/api$/, "");
 
 type RouteContext = { params: Promise<{ path: string[] }> };
