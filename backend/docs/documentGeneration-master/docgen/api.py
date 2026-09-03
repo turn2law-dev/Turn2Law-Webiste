@@ -25,6 +25,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 import shutil
 import tempfile
 import uuid
@@ -198,7 +199,9 @@ def list_templates() -> List[Dict[str, Any]]:
             "description": meta.get("description", ""),
             "icon": meta.get("icon", "file"),
             "required_fields": schema["required"],
-            "optional_fields": schema["optional"],
+            # CP_* values are injected by the branding/profile layer and are
+            # not user-editable document fields.
+            "optional_fields": [key for key in schema["optional"] if not key.startswith("CP_")],
         })
     return result
 
@@ -212,7 +215,7 @@ def get_schema(doc_type: str) -> Dict[str, Any]:
     return {
         "doc_type": doc_type,
         "required": [_field_meta(k) for k in schema["required"]],
-        "optional": [_field_meta(k) for k in schema["optional"]],
+        "optional": [_field_meta(k) for k in schema["optional"] if not k.startswith("CP_")],
     }
 
 
@@ -572,7 +575,9 @@ def _merge_company_profile(
     # Customer values override the base
     base.update({k: v for k, v in cp.items() if v is not None})
 
-    # Signature image: copy PNG to shared images/ dir; store only the stem
+    # Signature image: copy PNG to shared images/ dir; store only a validated
+    # image stem.  CP_Signature_Image is used inside \includegraphics, so a
+    # value typed into a form field must never be inserted verbatim.
     _IMAGES_DIR = os.path.join(_HERE, "images")
     os.makedirs(_IMAGES_DIR, exist_ok=True)
 
@@ -585,11 +590,49 @@ def _merge_company_profile(
     elif branding_mode != "turn2law":
         base.setdefault("CP_Signature_Image", "")
 
+    # Only accept an existing image in the engine's image directory.  Invalid
+    # values (for example a user entering "vjk" in an optional field) become
+    # an empty signature instead of a missing LaTeX input file.
+    if "CP_Signature_Image" in cp:
+        signature_candidate = cp["CP_Signature_Image"]
+    elif "CP_Signature_Image" in user_inputs:
+        signature_candidate = user_inputs["CP_Signature_Image"]
+    else:
+        signature_candidate = base.get("CP_Signature_Image", "")
+    if sig_image_path and os.path.isfile(sig_image_path):
+        signature_candidate = base["CP_Signature_Image"]
+    elif not str(signature_candidate).strip():
+        signature_candidate = ""
+    base["CP_Signature_Image"] = _safe_signature_image_stem(
+        signature_candidate,
+        _IMAGES_DIR,
+    )
+
     # Inject all CP_ keys; do not overwrite keys already in user_inputs
     for key, val in base.items():
         merged.setdefault(key, val)
 
+    # Always override a user-supplied CP_Signature_Image with the validated
+    # value calculated above; this token is executable LaTeX context.
+    merged["CP_Signature_Image"] = base["CP_Signature_Image"]
+
     return merged
+
+
+def _safe_signature_image_stem(value: Any, images_dir: str) -> str:
+    """Return a real local image stem suitable for ``\\includegraphics``."""
+    candidate = str(value or "").strip()
+    if not candidate or os.path.basename(candidate) != candidate:
+        return ""
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", candidate):
+        return ""
+
+    known_extensions = ("", ".png", ".jpg", ".jpeg", ".pdf")
+    for extension in known_extensions:
+        path = os.path.join(images_dir, candidate + extension)
+        if os.path.isfile(path):
+            return os.path.splitext(os.path.basename(path))[0]
+    return ""
 
 
 def _generate_direct_to(

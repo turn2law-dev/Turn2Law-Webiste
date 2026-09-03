@@ -194,9 +194,6 @@ def render_latex(
             tex = _dc + "\n" + _cp_tex + "\n" + _body
 
     # ── 5. Substitute {{FIELD}} tokens ───────────────────────────────────────
-    # CP_Signature_Image: raw filename, no escaping at all
-    _NO_ESCAPE = {"CP_Signature_Image"}
-
     # CP_* text fields: only escape & → \& (names, titles, addresses)
     _AMP_ONLY = {
         "CP_Company_Name", "CP_Signatory_Name", "CP_Designation",
@@ -206,8 +203,10 @@ def render_latex(
 
     for key, raw_value in values.items():
         placeholder = "{{" + key + "}}"
-        if key in _NO_ESCAPE:
-            tex = tex.replace(placeholder, str(raw_value))
+        if key == "CP_Signature_Image":
+            # This value is inserted into \includegraphics and must be a
+            # known local asset, never arbitrary user-supplied LaTeX/path text.
+            tex = tex.replace(placeholder, _safe_signature_image_stem(raw_value, images_dir))
         elif key in _AMP_ONLY:
             tex = tex.replace(placeholder, str(raw_value).replace("&", r"\&"))
         else:
@@ -270,3 +269,18 @@ def _escape_latex(value: str) -> str:
         elif ch == '^':  result.append(r'\textasciicircum{}')
         else:            result.append(ch)
     return ''.join(result)
+
+
+def _safe_signature_image_stem(value: object, images_dir: str) -> str:
+    """Return a real local image stem suitable for ``\\includegraphics``."""
+    candidate = str(value or "").strip()
+    if not candidate or os.path.basename(candidate) != candidate:
+        return ""
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", candidate):
+        return ""
+
+    for extension in ("", ".png", ".jpg", ".jpeg", ".pdf"):
+        path = os.path.join(images_dir, candidate + extension)
+        if os.path.isfile(path):
+            return os.path.splitext(os.path.basename(path))[0]
+    return ""
