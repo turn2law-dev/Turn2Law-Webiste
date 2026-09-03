@@ -22,7 +22,15 @@ logger = logging.getLogger(__name__)
 # Gemini
 # ---------------------------------------------------------------------------
 GEMINI_API_KEY: str | None = os.getenv("GEMINI_API_KEY")
-MODEL_NAME: str = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
+_configured_model = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
+# Render may retain an older service-level value when a Blueprint changes.
+# Keep retired Gemini model identifiers from taking the production classifier
+# down even if that stale environment value is still present.
+MODEL_NAME: str = (
+    "gemini-3.6-flash"
+    if _configured_model in {"gemini-2.5-flash", "models/gemini-2.5-flash"}
+    else _configured_model
+)
 
 if not GEMINI_API_KEY:
     logger.warning(
